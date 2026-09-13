@@ -65,9 +65,16 @@ function doPost(e) {
   try {
     var p = (e && e.parameter) || {};
 
-    // Spam trap: the hidden "company" field is invisible to people and
-    // irresistible to bots. Pretend success so the bot does not retry.
-    if (String(p.company || '').trim() !== '') {
+    // Spam trap: the hidden field is invisible to people and irresistible to
+    // bots. Pretend success so the bot does not retry.
+    //
+    // The field name must stay meaningless. It was briefly called "company",
+    // which browser autofill recognised and filled in for real visitors —
+    // their enquiries were silently discarded here. Hence the logging below:
+    // a false positive must always be recoverable from the execution log.
+    if (String(p.hp_field_9c || '').trim() !== '') {
+      Logger.log('Honeypot triggered — submission discarded. Payload: '
+                 + JSON.stringify(p));
       return jsonOut_({ ok: true, skipped: 'bot' });
     }
 

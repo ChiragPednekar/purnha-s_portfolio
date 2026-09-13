@@ -1919,10 +1919,13 @@ nav{display:flex;gap:2.5rem}
           <div class="enq-error" data-for="message"></div>
         </div>
 
-        <!-- spam trap: a real person never fills this -->
+        <!-- Spam trap. The field name is deliberately meaningless and there is
+             no label: browser autofill matches on names/labels like "company"
+             and will cheerfully fill an off-screen input, which would get a
+             real person's enquiry discarded as bot traffic. -->
         <div class="enq-hp" aria-hidden="true">
-          <label for="enq-company">Company</label>
-          <input id="enq-company" name="company" type="text" tabindex="-1" autocomplete="off">
+          <input id="enq-hp-field" name="hp_field_9c" type="text"
+                 tabindex="-1" autocomplete="off">
         </div>
 
         <div class="enq-submit">
