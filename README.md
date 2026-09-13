@@ -15,7 +15,19 @@ assets/video/     — 5 .mp4
 .backup/          — the original Pragadheesh Raj demo build, before the rebrand
 ```
 
-## Run it
+## Live
+
+| | |
+| --- | --- |
+| Production | https://purnah-portfolio.vercel.app |
+| Repo | https://github.com/ChiragPednekar/purnha-s_portfolio |
+| Vercel project | `purnah-portfolio` (Hobby) — linked to `main` |
+
+Every push to `main` redeploys automatically. `vercel.json` sets baseline security
+headers and nothing else — the site is static, so there is no build step.
+
+## Run it locally
+
 
 Must be served over HTTP — the OGL WebGL layer is an ES module, so `file://` will not work.
 
