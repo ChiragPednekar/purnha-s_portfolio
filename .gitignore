@@ -1,0 +1,12 @@
+# macOS
+.DS_Store
+
+# Pre-rebrand demo build (local history, not part of the site)
+.backup/
+
+# Vercel
+.vercel/
+
+# Editor / OS noise
+*.swp
+Thumbs.db

@@ -1,0 +1,1175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Case Study — Pūrnah</title>
+<meta name="description" content="Pūrnah — culinary wellness in Pali Hill, Mumbai.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Host+Grotesk:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+
+<style>
+/* ═══════════════════════════════════════════════════
+   FONTS — identical to index.html
+   ═══════════════════════════════════════════════════ */
+@font-face{font-family:'PPNeueMontreal';src:url('./assets/fonts/PPNeueMontreal-Book.woff2') format('woff2'),url('./assets/fonts/PPNeueMontreal-Book.otf') format('opentype');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:'PPNeueMontreal';src:url('./assets/fonts/PPNeueMontreal-Medium.woff2') format('woff2'),url('./assets/fonts/PPNeueMontreal-Medium.otf') format('opentype');font-weight:500;font-style:normal;font-display:swap}
+@font-face{font-family:'PPNeueMontreal';src:url('./assets/fonts/PPNeueMontreal-Bold.woff2') format('woff2'),url('./assets/fonts/PPNeueMontreal-Bold.otf') format('opentype');font-weight:700;font-style:normal;font-display:swap}
+@font-face{font-family:'PPNeueMontreal';src:url('./assets/fonts/PPNeueMontreal-Bold.woff2') format('woff2'),url('./assets/fonts/PPNeueMontreal-Bold.otf') format('opentype');font-weight:800;font-style:normal;font-display:swap}
+@font-face{font-family:'PPEditorialNew';src:url('./assets/fonts/PPEditorialNew-UltralightItalic.woff2') format('woff2'),url('./assets/fonts/PPEditorialNew-UltralightItalic.otf') format('opentype');font-weight:200;font-style:italic;font-display:swap}
+@font-face{font-family:'PPEditorialNew';src:url('./assets/fonts/PPEditorialNew-Italic.woff2') format('woff2'),url('./assets/fonts/PPEditorialNew-Italic.otf') format('opentype');font-weight:400;font-style:italic;font-display:swap}
+
+:root{
+  --black:#0a0a0a; --white:#f2f0eb; --dim:#6b6b6b; --accent:#e8e0d0;
+  --font-display:'PPEditorialNew','Times New Roman',Georgia,serif;
+  --font-heading:'PPNeueMontreal','Host Grotesk',sans-serif;
+  --font-mono:'Courier New',Courier,monospace;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;overflow-x:hidden;max-width:100vw}
+body{background:#000;color:var(--white);font-family:var(--font-mono);cursor:none;overflow-x:hidden}
+img,video{display:block}
+a{color:inherit;text-decoration:none}
+ul,ol{list-style:none}
+::selection{background:var(--white);color:#0a0a0a}
+
+/* ── cursor ── */
+#cursor{position:fixed;top:0;left:0;width:8px;height:8px;border-radius:50%;background:var(--white);transform:translate(-50%,-50%);pointer-events:none;z-index:10000;transition:transform .1s ease,width .3s ease,height .3s ease,opacity .3s ease,background .3s ease}
+#cursor.hover{width:40px;height:40px;background:transparent;box-shadow:inset 0 0 0 1px rgba(242,240,235,.5)}
+#cursor.hover-view{width:72px;height:72px;background:var(--white);box-shadow:none}
+#cursor.hover-view::after{content:'VIEW';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--font-heading);font-weight:500;font-size:.55rem;letter-spacing:.18em;color:#0a0a0a}
+
+/* ── preloader ── */
+#preloader{position:fixed;inset:0;background:#000;z-index:9999;display:flex;align-items:flex-end;justify-content:flex-end;padding:3rem 3.5rem;transition:transform .8s cubic-bezier(.76,0,.24,1)}
+#preloader.done{transform:translateY(-100%)}
+.pl-count{font-family:var(--font-heading);font-weight:500;font-size:clamp(6rem,20vw,18rem);line-height:.85;letter-spacing:-.04em;color:#fff;text-align:right}
+.pl-meta{position:absolute;top:3rem;left:3.5rem}
+.pl-label{font-family:var(--font-mono);font-size:.65rem;text-transform:uppercase;letter-spacing:.18em;color:var(--white);margin-bottom:1rem}
+.pl-track{width:120px;height:1px;background:#1a1a1a}
+.pl-fill{width:0%;height:100%;background:#fff;transition:width .15s ease}
+body.preloading .page,body.preloading header,body.preloading #sh-tooltip{visibility:hidden}
+
+/* ── header ── */
+header{position:fixed;top:0;left:0;width:100%;display:flex;justify-content:space-between;align-items:flex-start;padding:2rem 3rem;z-index:100;pointer-events:none;mix-blend-mode:difference}
+header>*{pointer-events:auto}
+.logo{font-family:var(--font-display);font-weight:400;font-style:italic;font-size:1rem;letter-spacing:-.01em;opacity:.7;color:var(--white)}
+.cs-back{display:flex;align-items:center;gap:.6rem;font-family:var(--font-mono);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--dim);transition:color .2s ease}
+.cs-back:hover{color:#fff}
+.cs-back svg{width:12px;height:12px}
+
+/* ── section headings ── */
+.section-heading{font-family:var(--font-heading);font-weight:800;font-size:clamp(2rem,5vw,5rem);line-height:1;letter-spacing:-.03em;color:var(--white);overflow:hidden;padding-bottom:.1em;margin-bottom:3rem}
+.sh-letter{display:inline-block;will-change:transform}
+.sh-space{display:inline-block;width:.28em}
+.sh-word{display:inline-block;white-space:nowrap}
+
+#sh-tooltip{position:fixed;top:0;left:0;width:320px;z-index:9998;background:rgba(10,10,10,.55);backdrop-filter:blur(18px) saturate(160%);-webkit-backdrop-filter:blur(18px) saturate(160%);border:1px solid rgba(242,240,235,.08);border-radius:6px;box-shadow:0 8px 40px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.04);padding:1.4rem 1.6rem;opacity:0;transform:translateY(6px);transition:opacity .22s ease,transform .22s ease;pointer-events:none}
+#sh-tooltip.visible{opacity:1;transform:translateY(0)}
+.sht-eyebrow{font-family:var(--font-mono);font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:#4ade80}
+.sht-title{font-family:var(--font-display);font-style:italic;font-weight:400;font-size:.85rem;color:#fff;margin-top:.7rem;line-height:1.4}
+.sht-divider{height:1px;background:rgba(242,240,235,.08);margin:1rem 0}
+.sht-code{font-family:var(--font-mono);font-size:.62rem;line-height:2;color:#555;white-space:pre}
+.sht-code .v{color:#a0c4ff}
+.sht-code .c{color:#f2f0eb;opacity:.7}
+.sht-foot{font-family:var(--font-mono);font-size:.52rem;letter-spacing:.12em;text-transform:uppercase;color:#333}
+
+/* ═══════════════════════════════════════════════════
+   CASE STUDY LAYOUT
+   ═══════════════════════════════════════════════════ */
+.page{position:relative;z-index:1}
+
+.cs-hero{
+  position:relative;
+  min-height:100vh;
+  background:#0d0d0d;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  padding:8rem 3rem 3rem;
+  overflow:hidden;
+}
+.cs-hero-media{
+  position:absolute;
+  inset:0;
+  z-index:0;
+}
+.cs-hero-media img{width:100%;height:100%;object-fit:cover;opacity:.35;will-change:transform}
+.cs-hero-media::after{
+  content:'';
+  position:absolute;inset:0;
+  background:linear-gradient(180deg, rgba(13,13,13,.65) 0%, rgba(13,13,13,.2) 40%, rgba(13,13,13,.95) 100%);
+}
+.cs-hero-inner{position:relative;z-index:1;width:100%}
+.cs-client{
+  font-family:var(--font-mono);
+  font-size:.75rem;
+  letter-spacing:.25em;
+  text-transform:uppercase;
+  color:#888;
+  margin-bottom:1.5rem;
+}
+.cs-title-clip{overflow:hidden;padding-bottom:.2em}
+.cs-title{
+  font-family:var(--font-display);
+  font-weight:200;
+  font-style:italic;
+  font-size:clamp(2.2rem,6vw,5.5rem);
+  line-height:1.1;
+  letter-spacing:-.03em;
+  color:#fff;
+  max-width:18ch;
+}
+.cs-title span{display:inline-block;will-change:transform}
+
+.cs-meta{
+  margin-top:4rem;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:1px;
+  background:#2a2a2a;
+  border-top:1px solid #2a2a2a;
+  border-bottom:1px solid #2a2a2a;
+}
+.cs-meta-cell{background:#0d0d0d;padding:1.4rem 1.2rem}
+.cs-meta-label{
+  font-family:var(--font-mono);
+  font-size:.55rem;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:#666;
+  margin-bottom:.7rem;
+}
+.cs-meta-value{
+  font-family:var(--font-heading);
+  font-weight:400;
+  font-size:.9rem;
+  line-height:1.5;
+  color:var(--white);
+}
+
+/* ── body sections ── */
+.cs-block{padding:8rem 3rem;border-top:1px solid #1a1a1a}
+.cs-block.alt{background:#0d0d0d}
+.cs-block.dark{background:#0a0a0a}
+.cs-block.warm{background:#161412}
+
+.cs-lede{
+  font-family:var(--font-heading);
+  font-weight:300;
+  font-size:clamp(1.3rem,2.4vw,2.6rem);
+  line-height:1.25;
+  letter-spacing:.02em;
+  color:#aaa;
+  max-width:26ch;
+}
+.cs-lede span{display:inline-block}
+
+.cs-two{
+  display:grid;
+  grid-template-columns:40fr 60fr;
+  gap:6rem;
+  align-items:start;
+}
+.cs-eyebrow{
+  font-family:var(--font-mono);
+  font-size:.85rem;
+  letter-spacing:.25em;
+  text-transform:uppercase;
+  color:#888;
+  margin-bottom:1.5rem;
+}
+.cs-body{
+  font-family:var(--font-heading);
+  font-weight:300;
+  font-size:1rem;
+  line-height:1.8;
+  color:#999;
+}
+.cs-body p + p{margin-top:1.4rem}
+.cs-body strong{color:var(--white);font-weight:500}
+
+.cs-list{margin-top:2rem}
+.cs-list li{
+  position:relative;
+  font-family:var(--font-heading);
+  font-weight:300;
+  font-size:.95rem;
+  line-height:1.7;
+  color:#999;
+  padding:.9rem 0 .9rem 1.4em;
+  border-bottom:1px solid #1e1e1e;
+}
+.cs-list li::before{
+  content:'';
+  position:absolute;left:0;top:1.5em;
+  width:4px;height:4px;border-radius:50%;
+  background:var(--white);opacity:.5;
+}
+
+/* ── media ── */
+.cs-figure{margin:0}
+.cs-figure img{width:100%;height:auto;border-radius:2px}
+.cs-figure figcaption{
+  margin-top:.9rem;
+  padding-top:.8rem;
+  border-top:1px solid #1e1e1e;
+  font-family:var(--font-mono);
+  font-size:.6rem;
+  letter-spacing:.15em;
+  text-transform:uppercase;
+  color:#666;
+}
+.cs-media-full{padding:0 3rem 6rem}
+.cs-media-pair{
+  padding:0 3rem 6rem;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+.cs-media-pair .cs-figure img{aspect-ratio:3/2;object-fit:cover}
+
+/* ── pull quote ── */
+.cs-pull{
+  padding:10rem 3rem;
+  background:#0d0d0d;
+  border-top:1px solid #1a1a1a;
+}
+.cs-pull-q{
+  font-family:var(--font-display);
+  font-style:italic;
+  font-weight:200;
+  font-size:clamp(1.6rem,4vw,3.6rem);
+  line-height:1.25;
+  color:#aaa;
+  max-width:24ch;
+}
+.cs-pull-q span{display:inline-block}
+.cs-pull-attr{
+  margin-top:2.5rem;
+  font-family:var(--font-mono);
+  font-size:.6rem;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:#555;
+}
+
+/* ── outcome metrics ── */
+.cs-metrics{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1px;
+  background:#2a2a2a;
+  border:1px solid #2a2a2a;
+  margin-top:3rem;
+}
+.cs-metric{background:#0a0a0a;padding:2.5rem 1.6rem}
+.cs-metric-n{
+  font-family:var(--font-heading);
+  font-weight:500;
+  font-size:clamp(2rem,4vw,3.4rem);
+  line-height:1;
+  letter-spacing:-.03em;
+  color:var(--white);
+}
+.cs-metric-l{
+  margin-top:1rem;
+  font-family:var(--font-heading);
+  font-weight:300;
+  font-size:.85rem;
+  line-height:1.6;
+  color:#999;
+}
+
+/* ── next project ── */
+.cs-next{
+  display:block;
+  padding:8rem 3rem;
+  background:#0a0a0a;
+  border-top:1px solid #1a1a1a;
+  cursor:none;
+}
+.cs-next-label{
+  font-family:var(--font-mono);
+  font-size:.75rem;
+  letter-spacing:.25em;
+  text-transform:uppercase;
+  color:#666;
+  margin-bottom:2rem;
+}
+.cs-next-title{
+  font-family:var(--font-display);
+  font-style:italic;
+  font-weight:200;
+  font-size:clamp(2rem,6vw,5rem);
+  line-height:1.1;
+  letter-spacing:-.03em;
+  color:var(--white);
+  transition:opacity .3s ease;
+}
+.cs-next:hover .cs-next-title{opacity:.55}
+
+/* ── footer ── */
+.footer{background:#0a0a0a;padding:6rem 3rem 3rem;border-top:1px solid #1a1a1a}
+.foot-eyebrow{font-family:var(--font-mono);font-size:.85rem;letter-spacing:.25em;text-transform:uppercase;color:#888;margin-bottom:2.5rem}
+.foot-mail{display:inline-block;font-family:var(--font-display);font-style:italic;font-weight:200;font-size:clamp(2rem,7vw,6rem);line-height:1.1;letter-spacing:-.03em;color:var(--white);padding-bottom:.1em}
+.foot-mail span{display:inline-block;transition:transform .4s cubic-bezier(.34,1.56,.64,1)}
+.foot-meta{margin-top:6rem;padding-top:2rem;border-top:1px solid #1e1e1e;display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;flex-wrap:wrap}
+.foot-links{display:flex;gap:2rem;flex-wrap:wrap}
+.foot-links a{font-family:var(--font-mono);font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:#666;transition:color .2s ease}
+.foot-links a:hover{color:#fff}
+.foot-colophon{font-family:var(--font-mono);font-size:.55rem;letter-spacing:.15em;text-transform:uppercase;color:#333;line-height:2;text-align:right}
+
+/* ── responsive ── */
+@media (max-width:1100px){
+  .cs-two{grid-template-columns:1fr;gap:3rem}
+  .cs-meta{grid-template-columns:repeat(2,1fr)}
+  .cs-metrics{grid-template-columns:1fr}
+}
+@media (max-width:767px){
+  #cursor{display:none}
+  body{cursor:auto}
+  header{padding:1.4rem 1.5rem;align-items:center}
+  #preloader{padding:1.5rem}
+  .pl-meta{top:1.5rem;left:1.5rem}
+  .cs-hero{padding:7rem 1.5rem 2rem}
+  .cs-block,.cs-pull,.cs-next,.footer{padding-left:1.5rem;padding-right:1.5rem}
+  .cs-block{padding-top:4.5rem;padding-bottom:4.5rem}
+  .cs-pull{padding-top:6rem;padding-bottom:6rem}
+  .cs-media-full,.cs-media-pair{padding-left:1.5rem;padding-right:1.5rem;padding-bottom:3rem}
+  .cs-media-pair{grid-template-columns:1fr}
+  .cs-meta{grid-template-columns:1fr}
+  .foot-meta{flex-direction:column;align-items:flex-start}
+  .foot-colophon{text-align:left}
+  #sh-tooltip{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
+}
+</style>
+</head>
+<body class="preloading">
+
+<div id="cursor"></div>
+
+<div id="preloader">
+  <div class="pl-meta">
+    <div class="pl-label">Loading</div>
+    <div class="pl-track"><div class="pl-fill" id="pl-fill"></div></div>
+  </div>
+  <div class="pl-count" id="pl-count">0</div>
+</div>
+
+<div id="sh-tooltip">
+  <div class="sht-eyebrow">// UNDER THE HOOD</div>
+  <div class="sht-title">This might look like a simple animation — here's what's actually going on.</div>
+  <div class="sht-divider"></div>
+<div class="sht-code"><span class="v">n</span> = total letters in heading
+<span class="v">t</span> = i / (n − 1)        <span class="c">// 0 → 1 across letters</span>
+<span class="v">curve(t)</span> = |cos(t × π)|  <span class="c">// U-shape</span>
+<span class="v">startY(i)</span> = −55 × curve(t)
+<span class="v">currentY(i)</span> = startY(i) × (1 − p)
+<span class="v">p</span> = scroll progress    <span class="c">// 0 → 1</span></div>
+  <div class="sht-divider"></div>
+  <div class="sht-foot">edges land first · middle follows · pure math</div>
+</div>
+
+<header>
+  <a href="./index.html" class="logo">Pūrnah</a>
+  <a href="./index.html#featured" class="cs-back">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M19 12H5"/><path d="m12 19-7-7 7-7"/>
+    </svg>
+    Back
+  </a>
+</header>
+
+<main class="page">
+
+  <!-- ══════════ HERO ══════════ -->
+  <section class="cs-hero">
+    <div class="cs-hero-media">
+      <img id="cs-cover" data-src="" alt="">
+    </div>
+    <div class="cs-hero-inner">
+      <div class="cs-client" id="cs-client"></div>
+      <div class="cs-title-clip">
+        <h1 class="cs-title" id="cs-title"></h1>
+      </div>
+
+      <div class="cs-meta">
+        <div class="cs-meta-cell">
+          <div class="cs-meta-label">Role</div>
+          <div class="cs-meta-value" id="cs-role"></div>
+        </div>
+        <div class="cs-meta-cell">
+          <div class="cs-meta-label">Years</div>
+          <div class="cs-meta-value" id="cs-years"></div>
+        </div>
+        <div class="cs-meta-cell">
+          <div class="cs-meta-label">Scope</div>
+          <div class="cs-meta-value" id="cs-scope"></div>
+        </div>
+        <div class="cs-meta-cell">
+          <div class="cs-meta-label">Team</div>
+          <div class="cs-meta-value" id="cs-team"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ LEDE ══════════ -->
+  <section class="cs-block alt">
+    <p class="cs-lede" id="cs-lede"></p>
+  </section>
+
+  <!-- ══════════ PROBLEM ══════════ -->
+  <section class="cs-block dark">
+    <h2 class="section-heading">The Problem</h2>
+    <div class="cs-two">
+      <div>
+        <div class="cs-eyebrow">Context</div>
+        <ul class="cs-list" id="cs-problem-list"></ul>
+      </div>
+      <div class="cs-body" id="cs-problem-body"></div>
+    </div>
+  </section>
+
+  <div class="cs-media-full" style="background:#0a0a0a">
+    <figure class="cs-figure">
+      <img id="cs-img-1" data-src="" alt="">
+      <figcaption id="cs-cap-1"></figcaption>
+    </figure>
+  </div>
+
+  <!-- ══════════ APPROACH ══════════ -->
+  <section class="cs-block warm">
+    <h2 class="section-heading">The Approach</h2>
+    <div class="cs-two">
+      <div>
+        <div class="cs-eyebrow">Principles</div>
+        <ul class="cs-list" id="cs-approach-list"></ul>
+      </div>
+      <div class="cs-body" id="cs-approach-body"></div>
+    </div>
+  </section>
+
+  <div class="cs-media-pair" style="background:#161412">
+    <figure class="cs-figure">
+      <img id="cs-img-2" data-src="" alt="">
+      <figcaption id="cs-cap-2"></figcaption>
+    </figure>
+    <figure class="cs-figure">
+      <img id="cs-img-3" data-src="" alt="">
+      <figcaption id="cs-cap-3"></figcaption>
+    </figure>
+  </div>
+
+  <!-- ══════════ PULL QUOTE ══════════ -->
+  <section class="cs-pull">
+    <p class="cs-pull-q" id="cs-pull"></p>
+    <div class="cs-pull-attr" id="cs-pull-attr"></div>
+  </section>
+
+  <!-- ══════════ OUTCOME ══════════ -->
+  <section class="cs-block dark">
+    <h2 class="section-heading">The Outcome</h2>
+    <div class="cs-two">
+      <div>
+        <div class="cs-eyebrow">Result</div>
+      </div>
+      <div class="cs-body" id="cs-outcome-body"></div>
+    </div>
+    <div class="cs-metrics" id="cs-metrics"></div>
+  </section>
+
+  <!-- ══════════ NEXT ══════════ -->
+  <a class="cs-next" id="cs-next" href="./index.html">
+    <div class="cs-next-label">Next Project</div>
+    <div class="cs-next-title" id="cs-next-title"></div>
+  </a>
+
+  <!-- ══════════ FOOTER ══════════ -->
+  <footer class="footer">
+    <div class="foot-eyebrow">Come Eat With Us</div>
+    <a class="foot-mail" id="foot-mail"
+       href="https://www.instagram.com/be.purnah/" target="_blank" rel="noopener">@be.purnah</a>
+    <div class="foot-meta">
+      <div class="foot-links">
+        <a href="./index.html">Home</a>
+        <a href="./index.html#featured">Kitchen</a>
+        <a href="./index.html#about">About</a>
+        <a href="https://maps.app.goo.gl/kaq6cLAM9mqHeydUA" target="_blank" rel="noopener">Directions</a>
+        <a href="https://www.swiggy.com/menu/1294611" target="_blank" rel="noopener">Swiggy</a>
+        <a href="https://zomato.onelink.me/xqzv/pltjc3sj" target="_blank" rel="noopener">Zomato</a>
+      </div>
+      <div class="foot-colophon">
+        Shop No. 4, Bajaj Arcade, Pali Hill Rd, Khar West, Mumbai 400052<br>
+        © <span id="year">2026</span> Pūrnah
+      </div>
+    </div>
+  </footer>
+
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+
+<script>
+/* ═══════════════════════════════════════════════════════════════
+   CASE STUDY CONTENT
+   One entry per project. ?p=<slug> selects it; unknown slugs fall
+   back to the first entry. Add a project by adding an entry here —
+   no other file needs to change.
+   ═══════════════════════════════════════════════════════════════ */
+window.CASES = {
+  'tables': {
+    client: 'Pūrnah : Tables',
+    title: 'Every Dish Carries Its Reasoning',
+    role: 'Menu design & cooking — Purna Chitalia',
+    years: 'Seasonal',
+    scope: 'Thali, Supper Club, Private Dining',
+    team: 'The Pūrnah kitchen · Next Door, Bandra',
+    cover: './assets/images/feat-01.webp',
+    lede: 'A thali where nothing is decorative. Every dish on the plate earns its place, and we will tell you exactly why it is there.',
+    problem: {
+      list: ['"Healthy" is a vibe, not a claim', 'Nutrition advice contradicts itself', 'Regional food gets dismissed', 'Nobody explains the why'],
+      body: '<p>Most food marketed as healthy asks you to take it on faith. Superfood labels, imported grains, a green colour palette — and no explanation of what any of it is actually doing.</p><p>Meanwhile the food that already works — <strong>unpolished regional rice, seasonal roots, wild ferments, monsoon bitters</strong> — gets treated as old-fashioned.</p>'
+    },
+    approach: {
+      list: ['Cook seasonal and mostly local', 'Ferment rather than preserve', 'Whole grain, never polished', 'Say the reason out loud'],
+      body: '<p>The thali is built as a set of deliberate decisions. Slow starches for steady energy. Root and leaf together for fibre. Bitters foraged in monsoon, because that is when they grow.</p><p>Every plate is served with its reasoning — <strong>not as a health claim, but as an explanation</strong>. Guests leave able to repeat it.</p>'
+    },
+    images: [
+      { src:'./assets/images/work-01.webp', cap:'Suran in coconut curry — slow starch, longer energy' },
+      { src:'./assets/images/work-02.webp', cap:'Arbi & patra vadai — root and leaf fibre' },
+      { src:'./assets/images/work-06.webp', cap:'Baked kantola fries — foraged monsoon bitters' }
+    ],
+    pull: 'Food does not need a health claim. It needs a reason you can repeat at your own table.',
+    pullAttr: '— Purna Chitalia',
+    outcome: '<p>Pūrnah:Tables runs as seasonal sit-down suppers, most of them at Next Door in Bandra. Past editions include a 7-course and a 10-course <strong>Korean Family Feast</strong> — an indulgent plant-based spread built from organic, non-GMO ingredients — both of which sold out.</p><p>In winter the kitchen takes <strong>Matla Undhiyu</strong> to the Farmers\' Market at YMCA Bandra on Sundays, in limited pre-booked portions.</p>',
+    metrics: [
+      { n:'8', l:'Dishes on a recent thali, each with its own reasoning' },
+      { n:'10', l:'Courses at the largest Pūrnah:Tables feast to date' },
+      { n:'Sold out', l:'Every Korean Family Feast so far' }
+    ],
+    next: 'kitchen'
+  },
+
+  'kitchen': {
+    client: 'Pūrnah : Kitchen',
+    title: 'A Plant-Based Kitchen in Pali Hill',
+    role: 'Founder & chef — Purna Chitalia',
+    years: 'Open Daily',
+    scope: 'Daily Menu, Dine-In, Delivery',
+    team: 'The Pūrnah kitchen',
+    cover: './assets/images/feat-02.webp',
+    lede: 'Healthy meals you would actually order twice. Cooked fresh in Pali Hill, available at the counter or delivered to your door.',
+    problem: {
+      list: ['Healthy food tastes like penance', 'Delivery kills texture', 'Portions ignore real appetite', 'Weekday cooking is exhausting'],
+      body: '<p>The gap is not knowledge — most people already know roughly what they should eat. The gap is a hot, good, plant-based meal available on a Tuesday night without any planning.</p><p>Health food that tastes like a compromise gets ordered <strong>once</strong>.</p>'
+    },
+    approach: {
+      list: ['Cook it like you would at home', 'Build the menu around the season', 'Travel-test every dish', 'Make it easy to repeat'],
+      body: '<p>The daily menu is plant-based, built on whole grains and vegetables that are actually in season, and cooked to be eaten — not photographed. Baked millet sev puri on a bhakri base. Amritsari chole with a jowar-and-sattu sourdough kulcha. Bhappa mishti doi crème brûlée. Cashew chaas, and cold-pressed juices like pineapple with turmeric.</p><p>Dishes are tested for how they survive twenty minutes in a delivery bag. Anything that arrives sad gets <strong>reworked or dropped</strong>.</p>'
+    },
+    images: [
+      { src:'./assets/images/feat-02.webp', cap:'The kitchen at Bajaj Arcade, Pali Hill' },
+      { src:'./assets/images/work-03.webp', cap:'Unpolished Ambe Mohr rice — whole grain, intact bran' },
+      { src:'./assets/images/work-04.webp', cap:'Tindora — fibre for a gentler glucose curve' }
+    ],
+    pull: 'The goal is not a special occasion meal. It is the meal you order on an ordinary Tuesday.',
+    pullAttr: '— Kitchen principle',
+    outcome: '<p>Open daily at Shop No. 4, Bajaj Arcade, Pali Hill Road, Union Park, Khar West — with delivery through Swiggy and Zomato.</p>',
+    metrics: [
+      { n:'Daily', l:'Fresh plant-based menu' },
+      { n:'2', l:'Delivery platforms — Swiggy and Zomato' },
+      { n:'Pali Hill', l:'Dine in, take away, or reserve a table' }
+    ],
+    next: 'pantry'
+  },
+
+  'pantry': {
+    client: 'Pūrnah : Pantry',
+    title: 'Fermented Slowly, In Small Batches',
+    role: 'Founder & chef — Purna Chitalia',
+    years: 'Year-Round',
+    scope: 'Pickles, Preserves, Spice Blends, Staples',
+    team: 'The Pūrnah kitchen',
+    cover: './assets/images/feat-03.webp',
+    lede: 'Pickles that are actually alive. Lacto-fermented in small batches, with salt and time doing the work that vinegar and preservatives usually shortcut.',
+    problem: {
+      list: ['Shelf pickles are dead food', 'Vinegar replaces fermentation', 'Preservatives and dyes as default', 'Traditional method takes time'],
+      body: '<p>Almost every pickle on a supermarket shelf is acidified rather than fermented — quick, stable, and biologically inert.</p><p>The traditional method is slower and less predictable, which is exactly why it got replaced. It also produces <strong>live cultures</strong>, which is the entire point.</p>'
+    },
+    approach: {
+      list: ['Salt and time, not vinegar', 'Small batches only', 'Seasonal and foraged inputs', 'Nothing added for shelf life'],
+      body: '<p>Baby mango is lacto-fermented in season. Prickly pear and tamarind become injipuli when the fruit is available and not before.</p><p>Batch sizes stay small because the process will not be rushed, and because <strong>every batch tastes slightly different</strong> — which is a feature of live food, not a flaw.</p>'
+    },
+    images: [
+      { src:'./assets/images/work-05.webp', cap:'Lacto-fermented baby mango pickle — live cultures, wild ferment' },
+      { src:'./assets/images/work-07.webp', cap:'Prickly pear & tamarind injipuli — seasonal forage' },
+      { src:'./assets/images/work-08.webp', cap:'Pineapple chilli — bromelain for easier digestion' }
+    ],
+    pull: 'Salt and time will do it. They just will not do it on your schedule.',
+    pullAttr: '— On fermentation',
+    outcome: '<p>Pantry staples are available at the Pali Hill counter alongside the daily menu, in whatever the season is currently producing.</p>',
+    metrics: [
+      { n:'Live', l:'Lacto-fermented, not vinegar-acidified' },
+      { n:'Small', l:'Batch sizes, made to season' },
+      { n:'0', l:'Artificial preservatives or colours' }
+    ],
+    next: 'workshops'
+  },
+
+  'workshops': {
+    client: 'Pūrnah : Workshops',
+    title: 'Workshops That Make Eating Well Ordinary',
+    role: 'Taught by Purna Chitalia',
+    years: 'Monthly',
+    scope: 'Fermentation, Seasonal Cooking, Gut Health',
+    team: 'Small groups',
+    cover: './assets/images/feat-04.webp',
+    lede: 'You do not need another meal plan. You need to be able to cook four things well and understand why they work.',
+    problem: {
+      list: ['Plans end when motivation does', 'Rules without reasoning do not stick', 'Fermentation feels intimidating', 'Nobody teaches the basics'],
+      body: '<p>Prescriptive plans work until the week they do not, and then there is nothing underneath them.</p><p>What survives is <strong>technique and understanding</strong> — knowing why you soak, why you ferment, why a bitter belongs on the plate.</p>'
+    },
+    approach: {
+      list: ['Teach method, not menus', 'Hands in the jar', 'Explain the mechanism', 'Small groups only'],
+      body: '<p>Sessions are hands-on. People leave with a jar they packed themselves and an understanding of what is going to happen inside it over the next two weeks.</p><p>Groups stay small so that everybody actually cooks, rather than <strong>watching somebody else cook</strong>.</p>'
+    },
+    images: [
+      { src:'./assets/images/feat-04.webp', cap:'Hands-on fermentation session' },
+      { src:'./assets/images/work-05.webp', cap:'Packing a jar — salt ratio and technique' },
+      { src:'./assets/images/work-02.webp', cap:'Seasonal cooking lab' }
+    ],
+    pull: 'A meal plan runs out. A method you understand does not.',
+    pullAttr: '— Teaching principle',
+    outcome: '<p>Workshops run monthly from the Pali Hill kitchen, with collaborations and one-off events announced on Instagram.</p>',
+    metrics: [
+      { n:'Monthly', l:'Fermentation and seasonal cooking labs' },
+      { n:'Small', l:'Group sizes, so everyone cooks' },
+      { n:'1 jar', l:'Everyone leaves with something they made' }
+    ],
+    next: 'guidance'
+  },
+
+  'guidance': {
+    client: 'Pūrnah : Guidance',
+    title: 'If Food and Health Feel Confusing, I Can Help',
+    role: 'Purna Chitalia — culinary medicine practitioner',
+    years: 'Ongoing',
+    scope: 'Food & Health Coaching, Seasonal Plans',
+    team: 'One to one',
+    cover: './assets/images/about-portrait.webp',
+    lede: 'Not a diet. Not a challenge. A way of eating that fits the life you already have, built one habit at a time.',
+    problem: {
+      list: ['Contradictory advice everywhere', 'All-or-nothing thinking', 'Health becomes a second job', 'Guilt as a motivator'],
+      body: '<p>The information environment around food is actively hostile — every claim has a counter-claim, and most of it is selling something.</p><p>The result is people who know a great deal about nutrition and still eat badly, because the advice was never <strong>designed to fit an actual week</strong>.</p>'
+    },
+    approach: {
+      list: ['Start from what you already eat', 'One change at a time', 'Explain every recommendation', 'No guilt, no challenges'],
+      body: '<p>We start with your current week, not an ideal one. Changes are small, sequential, and always explained — you should be able to say why you are doing something.</p><p>The measure of success is whether it is <strong>still happening in six months</strong>.</p>'
+    },
+    images: [
+      { src:'./assets/images/about-portrait.webp', cap:'Purna Chitalia' },
+      { src:'./assets/images/work-03.webp', cap:'Swapping polished for unpolished grain' },
+      { src:'./assets/images/work-01.webp', cap:'Building a plate around slow starch' }
+    ],
+    pull: 'Rebuild your relationship with food without turning health into a full-time job.',
+    pullAttr: '— The whole idea, in one line',
+    outcome: '<p>Guidance runs alongside the kitchen and workshops, and much of it is published openly — the psychology of eating, soil depletion and nutrient absorption, whey versus sattu, refined oils and hormonal health, vegan versus plant-based, and why traditional wisdom usually got there first.</p><p>Enquiries come through Instagram.</p>',
+    metrics: [
+      { n:'1:1', l:'Worked through individually' },
+      { n:'6 mo', l:'The horizon that actually matters' },
+      { n:'0', l:'Challenges, cleanses or cheat days' }
+    ],
+    next: 'founder'
+  },
+
+  'founder': {
+    client: 'Pūrnah',
+    title: 'The Cook Behind the Counter',
+    role: 'Purna Chitalia — founder',
+    years: 'Pali Hill, Mumbai',
+    scope: 'Kitchen, Pantry, Table, Workshops',
+    team: 'Pūrnah',
+    cover: './assets/images/hero-portrait.webp',
+    lede: 'Pūrnah began with a straightforward frustration: food that is good for you should not have to be joyless, imported, or explained away.',
+    problem: {
+      list: ['Wellness food lost the pleasure', 'Local ingredients undervalued', 'Health framed as restriction', 'Nobody cooking the middle ground'],
+      body: '<p>There was plenty of indulgent food and plenty of joyless health food, and very little in between that took both seriously.</p><p>Regional Indian ingredients — <strong>unpolished rice, monsoon bitters, wild ferments, seasonal roots</strong> — were already the answer, and were being skipped over in favour of imported alternatives.</p>'
+    },
+    approach: {
+      list: ['Cook what grows here', 'Take pleasure seriously', 'Explain the reasoning', 'Kitchen, pantry and table together'],
+      body: '<p>Pūrnah runs as a kitchen, a pantry and a table, because the three reinforce each other — you eat something, you understand why it works, and you can take a jar of it home.</p><p>The work has been recognised by <strong>The Restore Awards®</strong>, where Purna is a nominee for Green Nutrition Champion.</p>'
+    },
+    images: [
+      { src:'./assets/images/hero-portrait.webp', cap:'Purna Chitalia' },
+      { src:'./assets/images/hero-br.webp', cap:'The kitchen, Pali Hill' },
+      { src:'./assets/images/feat-01.webp', cap:'A Pūrnah thali' }
+    ],
+    pull: 'Food that is good for you should not have to be joyless, imported, or explained away.',
+    pullAttr: '— Why Pūrnah exists',
+    outcome: '<p>Pūrnah operates from Pali Hill, Mumbai — open daily, with delivery on Swiggy and Zomato, monthly workshops and seasonal suppers.</p>',
+    metrics: [
+      { n:'Nominee', l:'The Restore Awards® — Green Nutrition Champion' },
+      { n:'Pali Hill', l:'Kitchen, pantry and table in one place' },
+      { n:'Daily', l:'Open for dine-in, takeaway and delivery' }
+    ],
+    next: 'tables'
+  }
+};
+</script>
+
+<script>
+/* ═══════════════════════════════════════════════════════════════
+   0 · SHARED
+   ═══════════════════════════════════════════════════════════════ */
+(function(){
+  'use strict';
+  window.__isMobile = window.matchMedia('(max-width:767px)').matches;
+  window.__clamp = function(v,min,max){ return v<min?min:(v>max?max:v); };
+  var y = document.getElementById('year');
+  if(y) y.textContent = new Date().getFullYear();
+})();
+
+/* ═══════════════════════════════════════════════════════════════
+   1 · POPULATE FROM ?p=<slug>
+       Runs before the preloader scans for [data-src].
+   ═══════════════════════════════════════════════════════════════ */
+(function(){
+  'use strict';
+  var slugs = Object.keys(window.CASES);
+  var want  = new URLSearchParams(location.search).get('p');
+  var slug  = (want && window.CASES[want]) ? want : slugs[0];
+  var C     = window.CASES[slug];
+
+  function set(id, val){ var el = document.getElementById(id); if(el) el.textContent = val; }
+  function html(id, val){ var el = document.getElementById(id); if(el) el.innerHTML = val; }
+
+  document.title = C.title + ' — ' + C.client;
+  var desc = document.querySelector('meta[name="description"]');
+  if(desc) desc.setAttribute('content', C.client + ' — ' + C.title);
+
+  set('cs-client', C.client);
+  set('cs-title',  C.title);
+  set('cs-role',   C.role);
+  set('cs-years',  C.years);
+  set('cs-scope',  C.scope);
+  set('cs-team',   C.team);
+  set('cs-lede',   C.lede);
+  set('cs-pull',   C.pull);
+  set('cs-pull-attr', C.pullAttr);
+
+  document.getElementById('cs-cover').setAttribute('data-src', C.cover);
+  document.getElementById('cs-cover').alt = C.client + ' — cover';
+
+  html('cs-problem-body',  C.problem.body);
+  html('cs-approach-body', C.approach.body);
+  html('cs-outcome-body',  C.outcome);
+
+  function fillList(id, arr){
+    var ul = document.getElementById(id);
+    if(!ul) return;
+    ul.innerHTML = '';
+    arr.forEach(function(t){
+      var li = document.createElement('li');
+      li.textContent = t;
+      ul.appendChild(li);
+    });
+  }
+  fillList('cs-problem-list',  C.problem.list);
+  fillList('cs-approach-list', C.approach.list);
+
+  C.images.forEach(function(im, i){
+    var img = document.getElementById('cs-img-' + (i+1));
+    var cap = document.getElementById('cs-cap-' + (i+1));
+    if(img){ img.setAttribute('data-src', im.src); img.alt = im.cap; }
+    if(cap){ cap.textContent = im.cap; }
+  });
+
+  var mw = document.getElementById('cs-metrics');
+  mw.innerHTML = '';
+  C.metrics.forEach(function(m){
+    var d = document.createElement('div');
+    d.className = 'cs-metric';
+    var n = document.createElement('div');
+    n.className = 'cs-metric-n';
+    n.textContent = m.n;
+    var l = document.createElement('div');
+    l.className = 'cs-metric-l';
+    l.textContent = m.l;
+    d.appendChild(n); d.appendChild(l);
+    mw.appendChild(d);
+  });
+
+  var nextSlug = window.CASES[C.next] ? C.next : slugs[0];
+  var N = window.CASES[nextSlug];
+  document.getElementById('cs-next').href = './case-study.html?p=' + nextSlug;
+  set('cs-next-title', N.title);
+})();
+
+/* ═══════════════════════════════════════════════════════════════
+   2 · CURSOR
+   ═══════════════════════════════════════════════════════════════ */
+(function(){
+  'use strict';
+  var cursor = document.getElementById('cursor');
+  if(!cursor || window.__isMobile) return;
+  window.addEventListener('mousemove', function(e){
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top  = e.clientY + 'px';
+  }, {passive:true});
+  document.addEventListener('mouseover', function(e){
+    var t = e.target;
+    if(!t || !t.closest) return;
+    var view = t.closest('.cs-next');
+    var link = t.closest('a, button');
+    cursor.classList.toggle('hover-view', !!view);
+    cursor.classList.toggle('hover', !!link && !view);
+  });
+})();
+
+/* ═══════════════════════════════════════════════════════════════
+   3 · PRELOADER
+   ═══════════════════════════════════════════════════════════════ */
+(function(){
+  'use strict';
+  var preloader = document.getElementById('preloader');
+  var countEl = document.getElementById('pl-count');
+  var fillEl  = document.getElementById('pl-fill');
+  if(!preloader) return;
+
+  var imgNodes = Array.prototype.slice.call(document.querySelectorAll('img[data-src]'));
+  var total = imgNodes.length || 1;
+  var loaded = 0, done = false;
+
+  imgNodes.forEach(function(n){
+    var im = new Image();
+    im.onload = im.onerror = function(){ loaded++; };
+    im.src = n.getAttribute('data-src');
+  });
+
+  var shown = 0;
+  function loop(){
+    var target = Math.floor(loaded / total * 100);
+    if(shown < target) shown++;
+    countEl.textContent = shown;
+    fillEl.style.width = shown + '%';
+    if(shown >= 100 && loaded >= total){ finish(); return; }
+    requestAnimationFrame(loop);
+  }
+  requestAnimationFrame(loop);
+  setTimeout(function(){ loaded = total; }, 10000);
+
+  function finish(){
+    if(done) return;
+    done = true;
+    countEl.textContent = '100';
+    fillEl.style.width = '100%';
+    setTimeout(function(){
+      imgNodes.forEach(function(n){
+        n.src = n.getAttribute('data-src');
+        n.removeAttribute('data-src');
+      });
+      preloader.classList.add('done');
+      document.body.classList.remove('preloading');
+      setTimeout(function(){
+        if(preloader.parentNode) preloader.parentNode.removeChild(preloader);
+      }, 900);
+    }, 400);
+  }
+})();
+
+/* ═══════════════════════════════════════════════════════════════
+   4 · LENIS + TICKER + COVER PARALLAX
+   ═══════════════════════════════════════════════════════════════ */
+(function(){
+  'use strict';
+  if(typeof gsap === 'undefined') return;
+  gsap.registerPlugin(ScrollTrigger);
+
+  var lenis = new Lenis({ lerp:0.08, smoothWheel:!window.__isMobile });
+  window.__lenis = lenis;
+
+  var cover = document.getElementById('cs-cover');
+  var setY  = cover ? gsap.quickTo(cover, 'y', {duration:1.0, ease:'power3.out'}) : null;
+
+  gsap.ticker.add(function(time){
+    lenis.raf(time * 1000);
+    ScrollTrigger.update();
+    if(setY){
+      var sy = window.scrollY || window.pageYOffset || 0;
+      if(sy < window.innerHeight * 1.2) setY(sy * 0.25);
+    }
+  });
+  gsap.ticker.lagSmoothing(0);
+
+  var easeInOutCubic = function(t){
+    return t < 0.5 ? 4*t*t*t : 1 - Math.pow(-2*t + 2, 3)/2;
+  };
+  document.querySelectorAll('a[href^="#"]').forEach(function(a){
+    a.addEventListener('click', function(e){
+      var target = document.querySelector(a.getAttribute('href'));
+      if(!target) return;
+      e.preventDefault();
+      lenis.scrollTo(target, { duration:1.6, easing:easeInOutCubic });
+    });
+  });
+})();
+
+/* ═══════════════════════════════════════════════════════════════
+   5 · TITLE ARC REVEAL
+   ═══════════════════════════════════════════════════════════════ */
+(function(){
+  'use strict';
+  if(typeof gsap === 'undefined') return;
+  var h1 = document.getElementById('cs-title');
+  if(!h1) return;
+
+  var KERN = { 'P':{pr:'.1em'}, 'g':{pl:'.1em',ml:'-.1em'}, 'j':{pl:'.25em',pr:'.1em',ml:'-.25em',mr:'-.04em'} };
+  var text = h1.textContent;
+  h1.textContent = '';
+  var letters = [];
+
+  var word = null;   /* per-character inline-blocks would otherwise let a line
+                        break inside a word — each word gets a nowrap wrapper */
+
+  text.split('').forEach(function(ch){
+    var s = document.createElement('span');
+    if(ch === ' '){
+      s.style.display = 'inline-block';
+      s.style.width = '.28em';
+      h1.appendChild(s);          /* spaces sit between words: lines break here */
+      letters.push(s);
+      word = null;
+      return;
+    }
+    if(!word){
+      word = document.createElement('span');
+      word.style.display = 'inline-block';
+      word.style.whiteSpace = 'nowrap';
+      h1.appendChild(word);
+    }
+    s.textContent = ch;
+    s.style.display = 'inline-block';
+    s.style.paddingLeft = '.04em';
+    s.style.paddingRight = '.04em';
+    s.style.marginLeft = '-.04em';
+    s.style.marginRight = '-.04em';
+    var k = KERN[ch];
+    if(k){
+      if(k.pl) s.style.paddingLeft = k.pl;
+      if(k.pr) s.style.paddingRight = k.pr;
+      if(k.ml) s.style.marginLeft = k.ml;
+      if(k.mr) s.style.marginRight = k.mr;
+    }
+    word.appendChild(s);
+    letters.push(s);
+  });
+
+  var n = letters.length;
+  letters.forEach(function(el, i){
+    var t = n > 1 ? i/(n-1) : 0;
+    gsap.set(el, { yPercent: Math.abs(Math.cos(t * Math.PI)) * 110 });
+  });
+
+  gsap.set(['.cs-client', '.cs-meta'], { opacity:0, y:12 });
+
+  var fired = false;
+  function play(){
+    if(fired) return;
+    fired = true;
+    setTimeout(function(){
+      gsap.to(letters, {
+        yPercent:0, duration:0.9, ease:'power3.out',
+        stagger:{ each:0.04, from:'center' }, delay:0.05
+      });
+      gsap.to(['.cs-client', '.cs-meta'], {
+        opacity:1, y:0, duration:0.7, ease:'power2.out', stagger:0.12, delay:0.3
+      });
+    }, 300);
+  }
+
+  if(!document.body.classList.contains('preloading')){
+    play();
+  }else{
+    var mo = new MutationObserver(function(){
+      if(!document.body.classList.contains('preloading')){ mo.disconnect(); play(); }
+    });
+    mo.observe(document.body, { attributes:true, attributeFilter:['class'] });
+  }
+})();
+
+/* ═══════════════════════════════════════════════════════════════
+   6 · SCRUB MASK — lede + pull quote
+   ═══════════════════════════════════════════════════════════════ */
+(function(){
+  'use strict';
+  if(typeof gsap === 'undefined') return;
+
+  function splitChars(el){
+    var text = el.textContent;
+    el.textContent = '';
+    var chars = [];
+    text.split(/(\s+)/).forEach(function(part){
+      if(part === '') return;
+      if(/^\s+$/.test(part)){
+        el.appendChild(document.createTextNode(part));
+        for(var i=0;i<part.length;i++) chars.push(null);
+        return;
+      }
+      var word = document.createElement('span');
+      word.style.display = 'inline-block';
+      word.style.whiteSpace = 'nowrap';
+      part.split('').forEach(function(ch){
+        var s = document.createElement('span');
+        s.textContent = ch;
+        word.appendChild(s);
+        chars.push(s);
+      });
+      el.appendChild(word);
+    });
+    return chars;
+  }
+
+  function attachMask(el){
+    var chars = splitChars(el);
+    var total = chars.length;
+    var feather = total * 0.07;
+    chars.forEach(function(c){ if(c) c.style.opacity = '0.12'; });
+
+    function apply(p){
+      var front = p * (total + 1);
+      for(var i=0;i<total;i++){
+        var c = chars[i];
+        if(!c) continue;
+        var dist = front - i, o;
+        if(dist <= 0) o = 0.12;
+        else if(dist < feather){ var r = dist/feather; o = 0.12 + 0.88*r*r; }
+        else o = 1;
+        c.style.opacity = o;
+      }
+    }
+
+    ScrollTrigger.create({
+      trigger: el, start:'top 80%', end:'top 40%', scrub:true,
+      onUpdate: function(self){ apply(self.progress); },
+      onLeave: function(){ chars.forEach(function(c){ if(c) c.style.opacity = '1'; }); }
+    });
+    apply(0);
+  }
+
+  ['cs-lede','cs-pull'].forEach(function(id){
+    var el = document.getElementById(id);
+    if(el) attachMask(el);
+  });
+})();
+
+/* ═══════════════════════════════════════════════════════════════
+   7 · SECTION HEADINGS — ARC + EASTER EGG
+   ═══════════════════════════════════════════════════════════════ */
+(function(){
+  'use strict';
+  if(typeof gsap === 'undefined') return;
+
+  var AMP = -40, MIN = -12;
+  var tooltip = document.getElementById('sh-tooltip');
+  var isMobile = window.__isMobile;
+
+  document.querySelectorAll('.section-heading').forEach(function(heading){
+    var text = heading.textContent;
+    heading.textContent = '';
+    var letters = [];
+
+    var word = null;   /* keep each word unbreakable across lines */
+    text.split('').forEach(function(ch){
+      var s = document.createElement('span');
+      if(ch === ' '){
+        s.className = 'sh-space';
+        heading.appendChild(s);
+        word = null;
+        return;
+      }
+      if(!word){
+        word = document.createElement('span');
+        word.className = 'sh-word';
+        heading.appendChild(word);
+      }
+      s.className = 'sh-letter';
+      s.textContent = ch;
+      s.style.willChange = 'transform';
+      word.appendChild(s);
+      letters.push(s);
+    });
+
+    var n = letters.length;
+    var startY = letters.map(function(_, i){
+      var t = n > 1 ? i/(n-1) : 0;
+      return MIN + (AMP - MIN) * Math.abs(Math.cos(t * Math.PI));
+    });
+    letters.forEach(function(el, i){ gsap.set(el, { y: startY[i] }); });
+
+    ScrollTrigger.create({
+      trigger: heading, start:'top 90%', end:'top 20%', scrub:true,
+      onUpdate: function(self){
+        for(var i=0;i<letters.length;i++) gsap.set(letters[i], { y: startY[i] * (1 - self.progress) });
+      },
+      onLeave: function(){
+        for(var i=0;i<letters.length;i++) gsap.set(letters[i], { y:0 });
+      }
+    });
+
+    if(!tooltip || isMobile) return;
+
+    heading.addEventListener('mouseover', function(e){
+      if(!e.target.classList || !e.target.classList.contains('sh-letter')) return;
+      tooltip.classList.add('visible');
+    });
+    heading.addEventListener('mouseout', function(e){
+      if(!e.target.classList || !e.target.classList.contains('sh-letter')) return;
+      tooltip.classList.remove('visible');
+    });
+    heading.addEventListener('mousemove', function(e){
+      if(!tooltip.classList.contains('visible')) return;
+      var w = tooltip.offsetWidth, h = tooltip.offsetHeight;
+      var x = e.clientX + 24, y = e.clientY + 24;
+      if(x + w > window.innerWidth - 20) x = e.clientX - 24 - w;
+      if(y + h > window.innerHeight - 20) y = e.clientY - 24 - h;
+      tooltip.style.left = x + 'px';
+      tooltip.style.top  = y + 'px';
+    });
+  });
+})();
+
+/* ═══════════════════════════════════════════════════════════════
+   8 · FOOTER EMAIL
+   ═══════════════════════════════════════════════════════════════ */
+(function(){
+  'use strict';
+  var mail = document.getElementById('foot-mail');
+  if(!mail || typeof gsap === 'undefined' || window.__isMobile) return;
+  var text = mail.textContent;
+  mail.textContent = '';
+  var letters = [];
+  text.split('').forEach(function(ch){
+    var s = document.createElement('span');
+    s.textContent = ch;
+    mail.appendChild(s);
+    letters.push(s);
+  });
+  mail.addEventListener('mouseenter', function(){
+    gsap.to(letters, { y:-10, duration:0.5, ease:'power3.out', stagger:{each:0.02, from:'start'} });
+  });
+  mail.addEventListener('mouseleave', function(){
+    gsap.to(letters, { y:0, duration:0.5, ease:'power3.out', stagger:{each:0.02, from:'end'} });
+  });
+})();
+</script>
+
+</body>
+</html>
